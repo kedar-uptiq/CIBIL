@@ -15,7 +15,11 @@ router.get("/", (req, res) => {
     return res.status(404).json({ error: "Person not found" });
   }
 
-  res.json(person);
+  res.json({
+    name: person.name,
+    pan: person.pan,
+    cibilScore: person.cibilScore
+  });
 });
 
 module.exports = router;
