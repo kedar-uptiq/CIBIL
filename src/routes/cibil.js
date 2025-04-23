@@ -1,7 +1,6 @@
-import { Router } from "express";
-import { people } from "../data/people";
-
-const router = Router();
+const express = require("express");
+const router = express.Router();
+const people = require("../data/people");
 
 router.get("/", (req, res) => {
   const { pan, dob } = req.query;
@@ -10,9 +9,7 @@ router.get("/", (req, res) => {
     return res.status(400).json({ error: "PAN and DOB are required" });
   }
 
-  const person = people.find(
-    (p) => p.pan === pan && p.dob === dob
-  );
+  const person = people.find(p => p.pan === pan && p.dob === dob);
 
   if (!person) {
     return res.status(404).json({ error: "Person not found" });
@@ -21,4 +18,4 @@ router.get("/", (req, res) => {
   res.json(person);
 });
 
-export default router;
+module.exports = router;
