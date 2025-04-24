@@ -2,9 +2,12 @@ const express = require("express");
 const router = express.Router();
 const people = require("../data/people");
 
-// Get CIBIL data by PAN only
-router.get("/:pan", (req, res) => {
-  const { pan } = req.params;
+router.get("/", (req, res) => {
+  const { pan } = req.query;
+
+  if (!pan) {
+    return res.status(400).json({ error: "PAN are required" });
+  }
 
   const person = people.find(p => p.pan === pan);
 
@@ -12,7 +15,11 @@ router.get("/:pan", (req, res) => {
     return res.status(404).json({ error: "Person not found" });
   }
 
-  res.json(person);
+  res.json({
+    name: person.name,
+    pan: person.pan,
+    cibilScore: person.cibilScore
+  });
 });
 
 module.exports = router;
