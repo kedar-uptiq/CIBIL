@@ -8,9 +8,9 @@ const people = [
   },
   {
     id: "2",
-    name: "Anjali Verma",
-    pan: "XYZAB5678C",
-    dob: "1985-09-12",
+    name: "RAJUBHAI SAHEBLAL PATEL",
+    pan: "CLDPP1659Q",
+    dob: "1966-01-01",
     cibilScore: 812
   },
   {
